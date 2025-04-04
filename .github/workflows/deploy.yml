@@ -18,10 +18,12 @@ jobs:
           
       - name: Install Worker dependencies
         working-directory: ./worker
-        run: npm install
+        run: |
+         npm cache clean --force  # 强制清理缓存
+         npm install --force      # 强制安装依赖
       
       - name: Install wrangler
-        run: npm install -g wrangler
+        run: npm install -g wrangler@3.0.0  # 使用指定版本
       
       - name: Check and Create KV Namespaces
         env:
